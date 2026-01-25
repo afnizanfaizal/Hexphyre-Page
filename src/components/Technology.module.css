@@ -1,0 +1,119 @@
+.section {
+    padding: var(--gap-lg) 0 var(--gap-xl);
+    background: var(--background);
+    position: relative;
+    overflow: hidden;
+    background-image: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(217, 70, 239, 0.05) 0%, transparent 50%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.label {
+    background: var(--gradient-cyan-purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8125rem;
+    margin-bottom: var(--gap-sm);
+}
+
+.heading {
+    font-size: clamp(1.4rem, 3.5vw, 2.45rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--gap-lg);
+    max-width: 900px;
+}
+
+.heading span {
+    background: var(--gradient-cyan-purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--gap-md);
+    width: 100%;
+    margin-top: var(--gap-md);
+}
+
+.card {
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+    transition: border-color 0.4s ease;
+}
+
+.card:hover {
+    border-color: transparent;
+    background-image: linear-gradient(#000, #000), var(--gradient-cyan-purple);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.bgImage {
+    object-fit: cover;
+    z-index: 1;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%);
+    z-index: 2;
+}
+
+.content {
+    padding: var(--gap-md);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 3;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--gap-xs);
+    color: #fff;
+}
+
+.description {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: var(--gap-lg) 0;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .heading {
+        font-size: 1.575rem;
+    }
+}
