@@ -16,7 +16,14 @@ export interface SiteSettings {
 }
 
 const SETTINGS_DOC_ID = 'global_settings';
-const settingsRef = doc(db, 'settings', SETTINGS_DOC_ID);
+
+// Helper to get document ref safely
+function getSettingsRef() {
+    if (!db || typeof db.collection !== 'function' && Object.keys(db).length === 0) {
+        return null;
+    }
+    return doc(db, 'settings', SETTINGS_DOC_ID);
+}
 
 export const DEFAULT_SETTINGS: SiteSettings = {
     siteTitle: 'HEXPHYRE TECHNOLOGIES',
@@ -34,7 +41,10 @@ export const DEFAULT_SETTINGS: SiteSettings = {
 
 export async function getSettings(): Promise<SiteSettings> {
     try {
-        const snap = await getDoc(settingsRef);
+        const ref = getSettingsRef();
+        if (!ref) return DEFAULT_SETTINGS;
+
+        const snap = await getDoc(ref);
         if (snap.exists()) {
             return snap.data() as SiteSettings;
         }
@@ -47,8 +57,11 @@ export async function getSettings(): Promise<SiteSettings> {
 
 export async function updateSettings(settings: Partial<SiteSettings>) {
     try {
+        const ref = getSettingsRef();
+        if (!ref) throw new Error('Firebase not initialized');
+
         const current = await getSettings();
-        await setDoc(settingsRef, { ...current, ...settings }, { merge: true });
+        await setDoc(ref, { ...current, ...settings }, { merge: true });
     } catch (error) {
         console.error('Error updating settings:', error);
         throw error;

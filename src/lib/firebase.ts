@@ -14,15 +14,24 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+let db: any;
+let auth: any;
+let storage: any;
 
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const isConfigValid = !!firebaseConfig.projectId;
 
-// Explicitly requesting the default database
-const db = getFirestore(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
-
-console.log('Firebase App Initialized:', app.name);
-console.log('Target Project:', app.options.projectId);
+if (isConfigValid) {
+    const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+    db = getFirestore(app);
+    auth = getAuth(app);
+    storage = getStorage(app);
+    console.log('Firebase App Initialized:', app.name);
+} else {
+    console.warn('⚠️ Firebase Project ID is missing. Using mock objects for build process.');
+    // Mock objects to prevent crashes during build/static analysis
+    db = {};
+    auth = {};
+    storage = {};
+}
 
 export { db, auth, storage };

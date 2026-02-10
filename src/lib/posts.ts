@@ -4,6 +4,7 @@ import { Post } from '@/components/PostCard';
 
 export async function incrementViews(id: string) {
     try {
+        if (!db || Object.keys(db).length === 0) return;
         const docRef = doc(db, 'posts', id);
         await updateDoc(docRef, {
             views: increment(1)
@@ -15,6 +16,7 @@ export async function incrementViews(id: string) {
 
 // Helper to get collection reference gracefully
 function getPostsCollection() {
+    if (!db || Object.keys(db).length === 0) return null;
     return collection(db, 'posts');
 }
 
@@ -28,7 +30,9 @@ export interface BlogPost extends Omit<Post, 'id'> {
 
 export async function getAllPosts(): Promise<BlogPost[]> {
     try {
-        const q = query(getPostsCollection(), orderBy('createdAt', 'desc'));
+        const col = getPostsCollection();
+        if (!col) return [];
+        const q = query(col, orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
 
         return querySnapshot.docs.map(doc => ({
@@ -43,7 +47,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     try {
-        const q = query(getPostsCollection(), where('slug', '==', slug), limit(1));
+        const col = getPostsCollection();
+        if (!col) return null;
+        const q = query(col, where('slug', '==', slug), limit(1));
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) return null;
@@ -61,7 +67,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 export async function createPost(post: Omit<BlogPost, 'id' | 'createdAt'>) {
     try {
-        const docRef = await addDoc(getPostsCollection(), {
+        const col = getPostsCollection();
+        if (!col) throw new Error('Firebase not initialized');
+
+        const docRef = await addDoc(col, {
             title: post.title || '',
             slug: post.slug || '',
             excerpt: post.excerpt || '',
@@ -110,6 +119,7 @@ export async function deletePost(id: string) {
 
 export async function getPostById(id: string): Promise<BlogPost | null> {
     try {
+        if (!db || Object.keys(db).length === 0) return null;
         const docRef = doc(db, 'posts', id);
         const docSnap = await getDoc(docRef);
 
