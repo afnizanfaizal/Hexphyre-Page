@@ -64,6 +64,36 @@
     border-color: var(--primary);
 }
 
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordInput {
+    flex: 1;
+    padding-right: 3rem !important;
+    /* Make room for the eye button */
+}
+
+.eyeButton {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: var(--foreground-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    transition: color 0.15s;
+}
+
+.eyeButton:hover {
+    color: var(--primary);
+}
+
 .button {
     margin-top: var(--gap-sm);
     width: 100%;
