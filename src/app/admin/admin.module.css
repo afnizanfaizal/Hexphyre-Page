@@ -82,19 +82,39 @@
 
 .navItem:hover {
     color: var(--foreground);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
+    /* Professional muted hover */
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: initial;
 }
 
 .navItemActive {
-    background: rgba(217, 70, 239, 0.08);
+    background: rgba(6, 182, 212, 0.1);
+    /* Subtle primary tint */
     color: var(--primary);
     font-weight: 600;
     border-left: 3px solid var(--primary);
 }
 
+.navItemActive:hover {
+    background: rgba(6, 182, 212, 0.15);
+    /* Slightly stronger on hover */
+    color: var(--primary);
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: var(--primary);
+}
+
 .navIcon {
     font-size: 1.1rem;
     opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.navItem:hover .navIcon,
+.navItemActive:hover .navIcon {
+    opacity: 1;
 }
 
 .badge {
@@ -192,6 +212,9 @@
 
 .viewSiteBtn:hover {
     background: rgba(255, 255, 255, 0.08);
+    color: var(--foreground);
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
 
 .notification {
@@ -255,14 +278,15 @@
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    transition: all 0.2s;
     border: none;
     cursor: pointer;
 }
 
 .btnNewPost:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(217, 70, 239, 0.3);
+    color: white;
+    background: var(--primary);
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
 
 /* Stats Cards */

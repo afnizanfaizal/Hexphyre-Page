@@ -189,7 +189,7 @@ export default function PostForm({ initialData, onSubmit, loading, title }: Post
                         <div className={styles.widgetBody}>
                             <div className={styles.categoryList}>
                                 {availableCategories.map(cat => (
-                                    <label key={cat.id} className={styles.checkboxLabel}>
+                                    <label key={cat.id} className={styles.categoryItem}>
                                         <input
                                             type="checkbox"
                                             checked={selectedCategories.includes(cat.name)}
