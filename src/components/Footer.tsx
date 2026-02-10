@@ -47,8 +47,8 @@ export default function Footer() {
                                 <Image
                                     src="/hexphyre_logo_white.png"
                                     alt="Hexphyre"
-                                    width={135}
-                                    height={30}
+                                    width={150}
+                                    height={40}
                                     style={{ objectFit: 'contain', objectPosition: 'left' }}
                                 />
                             </div>

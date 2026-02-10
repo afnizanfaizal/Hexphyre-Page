@@ -24,7 +24,7 @@ export default function Navbar() {
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.content}`}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
-          <div style={{ position: 'relative', width: '180px', height: '40px' }}>
+          <div style={{ position: 'relative', width: '180px', height: '48px' }}>
             <Image
               src="/hexphyre_logo_white.png"
               alt="Hexphyre"
