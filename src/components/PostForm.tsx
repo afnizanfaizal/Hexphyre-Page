@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { BlogPost } from '@/lib/posts';
 import { Taxonomy, getCategories } from '@/lib/taxonomy';
 import styles from './PostForm.module.css';
 import RichTextEditor from './RichTextEditor';
 
-import { useEffect } from 'react';
+
 
 interface PostFormProps {
     initialData?: BlogPost | null;
@@ -24,8 +24,15 @@ export default function PostForm({ initialData, onSubmit, loading, title }: Post
         content: initialData?.content || '',
         coverImage: initialData?.coverImage || '',
     });
-    const [contentSize, setContentSize] = useState(0);
-    const [sizeWarning, setSizeWarning] = useState(false);
+    const contentSize = useMemo(() => {
+        // Estimate payload size (Firestore limit is 1MB)
+        const payload = JSON.stringify({
+            ...formData
+        });
+        return payload.length; // Approximate bytes for UTF-16 strings
+    }, [formData]);
+
+    const sizeWarning = contentSize > 800000; // Warn at 800KB
 
     const [availableCategories, setAvailableCategories] = useState<Taxonomy[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<string[]>(initialData?.categories || []);
@@ -41,17 +48,6 @@ export default function PostForm({ initialData, onSubmit, loading, title }: Post
         }
         fetchCategories();
     }, []);
-
-
-    useEffect(() => {
-        // Estimate payload size (Firestore limit is 1MB)
-        const payload = JSON.stringify({
-            ...formData
-        });
-        const size = payload.length; // Approximate bytes for UTF-16 strings
-        setContentSize(size);
-        setSizeWarning(size > 800000); // Warn at 800KB
-    }, [formData]);
 
 
     const toggleCategory = (categoryName: string) => {
@@ -79,7 +75,7 @@ export default function PostForm({ initialData, onSubmit, loading, title }: Post
 
         // Final size check
         if (contentSize > 1000000) {
-            alert(`⚠️ CONTENT TOO LARGE: Your post is approximately ${(contentSize / (1024 * 1024)).toFixed(2)}MB, which exceeds Firestore's 1MB limit. This usually happens because of large images pasted directly into the editor. Please use external image URLs or upload smaller images.`);
+            alert('⚠️ IMAGE TOO LARGE: Direct pasting of large images is disabled to prevent data limits. Please use the "Featured Image" URL field or upload/link a smaller image.');
             return;
         }
 
@@ -123,7 +119,7 @@ export default function PostForm({ initialData, onSubmit, loading, title }: Post
                                 marginBottom: '1rem',
                                 fontSize: '0.875rem'
                             }}>
-                                <strong>⚠️ Post Too Large:</strong> You have exceeded the 1MB Firestore limit. This is usually caused by large images pasted directly into the editor. Please remove the images and use "Featured Image" or paste direct image URLs instead.
+                                <strong>⚠️ Post Too Large:</strong> You have exceeded the 1MB Firestore limit. This is usually caused by large images pasted directly into the editor. Please remove the images and use &quot;Featured Image&quot; or paste direct image URLs instead.
                             </div>
                         )}
                         <RichTextEditor

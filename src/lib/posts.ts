@@ -81,7 +81,7 @@ export async function updatePost(id: string, post: Partial<BlogPost>) {
     try {
         const docRef = doc(db, 'posts', id);
         // Clean up partial object to prevent undefined fields
-        const cleanPost: any = {};
+        const cleanPost: any = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
         if (post.title !== undefined) cleanPost.title = post.title;
         if (post.slug !== undefined) cleanPost.slug = post.slug;
         if (post.excerpt !== undefined) cleanPost.excerpt = post.excerpt;

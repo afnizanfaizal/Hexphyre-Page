@@ -52,7 +52,7 @@ export default function ProjectsPage() {
                         </div>
                     ) : (
                         <div className={styles.status}>
-                            <p>No projects found in the "Projects" category.</p>
+                            <p>No projects found in the &quot;Projects&quot; category.</p>
                         </div>
                     )}
                 </div>

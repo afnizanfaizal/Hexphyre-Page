@@ -47,6 +47,8 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
                 image: function () {
                     const url = window.prompt('Enter the image URL:');
                     if (url) {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         const quill = (this as any).quill;
                         const range = quill.getSelection();
                         if (quill && range) {
@@ -61,6 +63,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
             matchVisual: false,
             // Custom Matcher to intercept large images
             matchers: [
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 ['img', (node: any, delta: any) => {
                     // Check if the image source is a data URL (Base64)
                     const src = node.getAttribute('src');

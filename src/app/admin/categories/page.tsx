@@ -108,7 +108,7 @@ export default function CategoriesPage() {
                                 className={styles.input}
                             />
                             <p className={styles.helpText}>
-                                The "slug" is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.
+                                The &quot;slug&quot; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.
                             </p>
                         </div>
                         <div className={styles.formGroup}>

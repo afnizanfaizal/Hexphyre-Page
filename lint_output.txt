@@ -1,0 +1,44 @@
+
+> my-blog@0.1.0 lint
+> eslint
+
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/app/(site)/projects/page.tsx
+  4:8  warning  'Hero' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/app/admin/appearance/page.tsx
+  5:8  warning  'adminStyles' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/app/admin/components/AnalyticsCharts.tsx
+  11:5   warning  'BarChart' is defined but never used  @typescript-eslint/no-unused-vars
+  12:5   warning  'Bar' is defined but never used       @typescript-eslint/no-unused-vars
+  13:5   warning  'Cell' is defined but never used      @typescript-eslint/no-unused-vars
+  16:8   warning  'Image' is defined but never used     @typescript-eslint/no-unused-vars
+  20:11  warning  'Props' is defined but never used     @typescript-eslint/no-unused-vars
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/app/admin/page.tsx
+  20:12  warning  'stats' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/app/admin/settings/page.tsx
+  5:8  warning  'adminStyles' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/components/About.tsx
+  48:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  55:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  62:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/components/PostForm.tsx
+    4:8   warning  'Image' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  221:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/components/RichTextEditor.tsx
+   7:10  warning  'uploadFile' is defined but never used                                                                 @typescript-eslint/no-unused-vars
+   8:10  warning  'compressImage' is defined but never used                                                              @typescript-eslint/no-unused-vars
+  50:25  warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-explicit-any')
+
+/Users/afnizanfaizal/Desktop/Projects/Hexphyre/src/lib/analytics.ts
+  5:5  warning  'updateDoc' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 18 problems (0 errors, 18 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

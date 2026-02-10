@@ -37,7 +37,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
             await updatePost(id, data);
             router.push('/admin');
             router.refresh();
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             console.error('Failed to update post:', error);
             alert(`Error updating post: ${error.message || 'Unknown error'}. Check browser console for details.`);
         } finally {

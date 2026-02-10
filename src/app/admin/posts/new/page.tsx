@@ -15,7 +15,7 @@ export default function NewPostPage() {
             await createPost(data);
             router.push('/admin');
             router.refresh();
-        } catch (error: any) {
+        } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             console.error('Failed to create post:', error);
             alert(`Error creating post: ${error.message || 'Unknown error'}. Check browser console for details.`);
         } finally {
