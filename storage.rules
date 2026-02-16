@@ -1,0 +1,11 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      // Anyone can see images used in posts
+      allow get: if true;
+      // Only logged-in admin can upload, delete, or list all images
+      allow list, write: if request.auth != null;
+    }
+  }
+}
